@@ -1,1 +1,1 @@
-# martynas_project
+# This is a very simple blog app

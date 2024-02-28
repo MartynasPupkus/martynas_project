@@ -4,7 +4,12 @@ from django.utils import timezone
 from django.utils.translation import gettext as _
 
 
-class Post (models.Model):
+class Post(models.Model):
+
+    class NewManager(models.Manager):
+        def get_queryset(self):
+            return super().get_queryset().filter(status='published')
+
     options = (
     ('draft', 'Draft'),
     ('published', 'Published'),
@@ -17,9 +22,11 @@ class Post (models.Model):
     author = models.ForeignKey (get_user_model(), on_delete=models.CASCADE, related_name='blog_posts')
     content = models.TextField()
     status = models.CharField(max_length=10, choices=options, default='draft')
+    objects = models.Manager()
+    newmanager = NewManager()
 
     class Meta:
-        ordering = ('publish',)
+        ordering = ('-publish',)
 
     def __str__(self):
         return self.title

@@ -3,6 +3,7 @@ from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from .models import Post
 from .forms import NewCommentForm
 
+
 def home(request: HttpRequest) -> HttpResponse:
     all_posts = Post.newmanager.all()
     return render(request, 'index.html', {'posts': all_posts})
@@ -31,4 +32,3 @@ def post_single(request, post):
             'comment_form': comment_form 
         },
     )
-    

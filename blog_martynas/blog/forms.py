@@ -12,4 +12,3 @@ class NewCommentForm(forms.ModelForm):
             'email': forms.TextInput(attrs={'class': 'col-sm-12'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
         }
-    
